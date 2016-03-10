@@ -15,6 +15,8 @@ public class Main {
      */
     public static void main(String[] args) {
         CreateUser user=new CreateUser();
+        new UserCryptFile(user.login);
+        
         
     }
     
