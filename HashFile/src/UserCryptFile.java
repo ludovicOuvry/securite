@@ -22,10 +22,18 @@ public class UserCryptFile {
              cryptage = JOptionPane.showInputDialog(null, "Entrer la méthode de cryptage, laisser vide si inconnu", " Cryptage !", JOptionPane.QUESTION_MESSAGE);
              file= new File(path);
         }
+        if(!file.canRead()){
+            System.out.println("problème avec le fichier");
+            
+        }else{
+            
         
-        new Encrypt.EncryptFile(cryptage, login,file, new File(path));
-        file.delete();
-        
+            File Fcrypte= new File("crypte"+file.getName());
+
+            new Encrypt.EncryptFile(cryptage, login,file,Fcrypte);
+            file.delete(); // supression de l'ancien fichier 
+
     }   
     
+    }
 }
