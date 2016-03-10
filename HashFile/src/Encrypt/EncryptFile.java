@@ -45,6 +45,7 @@ public class EncryptFile {
         
         cipher.init(Cipher.ENCRYPT_MODE,secretKey);
         
+        // Stock inside the inputBytes buffer from the inputStream
         FileInputStream inputStream = new FileInputStream(this.clearFile);
         byte[] inputBytes = new byte[(int) this.clearFile.length()];
         inputStream.read(inputBytes);
