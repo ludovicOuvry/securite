@@ -2,6 +2,7 @@ package User;
 
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -39,7 +40,7 @@ public class User {
      */
     public boolean verif(String mdp){
         
-       return new  StrongPasswordEncryptor().encryptPassword(mdp).equals(mdpCrypte);
+       return new StrongPasswordEncryptor().checkPassword(mdp, mdpCrypte);
         
     }
     
@@ -50,10 +51,12 @@ public class User {
      */
     public void ajouter(){
          try {
+             
               FileWriter utilisateur =new FileWriter("utilisateur.txt",true);
-              utilisateur.write(this.toString());
+              utilisateur.write(this.toString()+"\n");
               
               utilisateur.close();
+              new File(login).mkdir();
               
          } catch (Exception ex) {
              System.err.println(ex);
@@ -67,7 +70,7 @@ public class User {
     }
      @Override
     public String toString(){
-        return login+";"+mdpCrypte+"\n";
+        return login+";"+mdpCrypte;
     }
 
     /**

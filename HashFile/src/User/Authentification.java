@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.Buffer;
 import javax.swing.JOptionPane;
+import org.jasypt.util.password.StrongPasswordEncryptor;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,7 +22,7 @@ import javax.swing.JOptionPane;
  * @author Ludovic
  */
 public class Authentification {
-    public User userValide;
+    public User userValide=null;
     
     public Authentification() throws FileNotFoundException, IOException{
         userValide=null;
@@ -40,8 +41,14 @@ public class Authentification {
                  if(new User(tabLigne[0], tabLigne[1]).verif(mdp)){
                      System.out.println("utilisateur Valide");
                      userValide=new User(tabLigne[0], tabLigne[1]);
+                     return;
+                 }else{
+                     System.out.println("tabLigne1: "+tabLigne[1]);
+                     System.out.println(new  StrongPasswordEncryptor().encryptPassword(mdp));
+                    System.out.println("mot de passe incorrecte");
+                    
                  }
-                 System.out.println("mot de passe incorrecte");
+                 
              }
          }
          
