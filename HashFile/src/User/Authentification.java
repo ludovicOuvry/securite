@@ -1,4 +1,8 @@
+package User;
 
+
+import User.User;
+import User.CreateUser;
 import javax.swing.JOptionPane;
 
 /*
@@ -12,14 +16,15 @@ import javax.swing.JOptionPane;
  * @author Ludovic
  */
 public class Authentification {
+    public User userValide;
     
     public Authentification(){
         
      String rep = JOptionPane.showInputDialog(null, "n pour créer un nouvelle utilisteur. \n a pour vous authentifier.", " Menu1 !", JOptionPane.QUESTION_MESSAGE);
      if(rep.equals("a")){
          
-     }else{
-         new CreateUser();
+     }else if(rep.equals("n")){
+        userValide=new CreateUser().user;
      }
     }
     

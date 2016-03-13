@@ -1,4 +1,5 @@
 
+import User.Authentification;
 import java.io.File;
 import java.io.IOException;
 
@@ -18,9 +19,11 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
+        new MiseEnPlace();
         //CreateUser user=new CreateUser();
         //new UserCryptFile(user.login);
         
+        new Authentification();
         
         new File("test.txt").createNewFile();
         new UserCryptFile("ludo");

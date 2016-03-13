@@ -1,3 +1,5 @@
+package User;
+
 
 import javax.swing.JOptionPane;
 import org.jasypt.util.password.StrongPasswordEncryptor;
@@ -15,7 +17,8 @@ import org.jasypt.util.text.BasicTextEncryptor;
  */
 public class CreateUser {
     public String login;
-    public String mdpCrypte; 
+    public String mdpCrypte;
+    public User user;
     public CreateUser(){
        
         String mdp;
@@ -27,6 +30,9 @@ public class CreateUser {
         StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
         String encryptedPassword = passwordEncryptor.encryptPassword(mdp);
         mdpCrypte=encryptedPassword;
+        user=new User(login,mdpCrypte);
+        System.out.println("mot de passe cryptée:"+mdpCrypte);
+        user.ajouter(); // vérif pas 2 fois  le même login pas faite.
         
         
        

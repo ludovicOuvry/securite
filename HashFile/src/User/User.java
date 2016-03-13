@@ -1,3 +1,5 @@
+package User;
+
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -36,7 +38,7 @@ public class User {
      * @return true si c'est le bon mdp false sinon.
      */
     public boolean verif(String mdp){
-        ;
+        
        return new  StrongPasswordEncryptor().encryptPassword(mdp).equals(mdpCrypte);
         
     }
@@ -46,10 +48,11 @@ public class User {
      * de la forme login;mdpcrypte;
      * @return
      */
-    public boolean ajouter(){
+    public void ajouter(){
          try {
-              FileWriter utilisateur =new FileWriter("utilisateur.txt");
+              FileWriter utilisateur =new FileWriter("utilisateur.txt",true);
               utilisateur.write(this.toString());
+              
               utilisateur.close();
               
          } catch (Exception ex) {
