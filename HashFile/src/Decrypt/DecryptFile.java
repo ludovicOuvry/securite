@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.security.Key;
 import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
@@ -15,22 +16,21 @@ import javax.crypto.spec.SecretKeySpec;
 public class DecryptFile {
     
     private String algoCrypt;
-    private byte[] key;
+    private SecretKey secretKey;
     private File cryptFile;
     private File decryptFile;
     
-    public DecryptFile(String algoCrypt, byte[] key, File cryptFile, File decryptFile){ 
+    public DecryptFile(String algoCrypt, SecretKey secretKey, File cryptFile, File decryptFile){ 
         this.algoCrypt = algoCrypt;
-        this.key = key;
+        this.secretKey = secretKey;
         this.cryptFile = cryptFile;
         this.decryptFile = decryptFile;
     }
     
     public void decrytage() throws Exception{
-        Key secretKey = new SecretKeySpec(this.key, this.key+"");
         Cipher cipher = Cipher.getInstance(this.algoCrypt);
         
-        cipher.init(Cipher.DECRYPT_MODE,secretKey);
+        cipher.init(Cipher.DECRYPT_MODE,this.secretKey);
         
         // Stock inside the inputBytes buffer from the inputStream
         FileInputStream inputStream = new FileInputStream(this.cryptFile);
