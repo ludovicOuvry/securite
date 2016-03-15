@@ -30,6 +30,8 @@ public class Main {
         f.createNewFile();
         FileWriter fw= new FileWriter(f);
         fw.write("message dans fichier crypté");
+        fw.close();
+        
         while (true) {            
             Authentification a=new Authentification();
              int rep=1;   
