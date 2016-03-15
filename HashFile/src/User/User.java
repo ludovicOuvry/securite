@@ -11,6 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import org.jasypt.util.password.PasswordEncryptor;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 
@@ -28,9 +29,11 @@ public class User {
     
      private String login;
      private String mdpCrypte;
-    public User(String login, String mdpCrypte ){
+     private String cle; // ex; AES MD5
+    public User(String login, String mdpCrypte, String cle ){
         this.login=login;
         this.mdpCrypte=mdpCrypte;
+        this.cle=cle;
     }
     
     /**
@@ -53,7 +56,7 @@ public class User {
          try {
              
               FileWriter utilisateur =new FileWriter("utilisateur.txt",true);
-              utilisateur.write(this.toString()+"\n");
+              utilisateur.write(this.toString()+";"+getCle()+"\n");
               
               utilisateur.close();
               new File(login).mkdir();
@@ -99,6 +102,20 @@ public class User {
      */
     public void setMdpCrypte(String mdpCrypte) {
         this.mdpCrypte = mdpCrypte;
+    }
+
+    /**
+     * @return the cle
+     */
+    public String getCle() {
+        return cle;
+    }
+
+    /**
+     * @param cle the cle to set
+     */
+    public void setCle(String cle) {
+        this.cle = cle;
     }
     
 }

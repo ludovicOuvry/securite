@@ -29,7 +29,7 @@ public class UserCryptFile {
         }else{
             
             System.out.println("nom du fichier:"+file.getName());
-            File Fcrypte= new File(user.getLogin()+"/"+file.getName()); // pour acéder au dossier
+            File Fcrypte= new File(user.getLogin()+File.separatorChar+file.getName()); // pour acéder au dossier
 
             new Encrypt.EncryptFile(cryptage, user.getLogin().getBytes(),file,Fcrypte).cryptage();
             System.out.println("Fichier cryptée");

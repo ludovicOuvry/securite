@@ -4,10 +4,13 @@ package User;
 import User.User;
 import User.CreateUser;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.Buffer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 
@@ -38,9 +41,10 @@ public class Authentification {
                  System.out.println("login trouvé");
                  String mdp = JOptionPane.showInputDialog(null, "entrer votre mot de passe", " Login !", JOptionPane.QUESTION_MESSAGE);
 
-                 if(new User(tabLigne[0], tabLigne[1]).verif(mdp)){
+                 if(new User(tabLigne[0], tabLigne[1],tabLigne[2]).verif(mdp)){
                      System.out.println("utilisateur Valide");
-                     userValide=new User(tabLigne[0], tabLigne[1]);
+                     userValide=new User(tabLigne[0], tabLigne[1], tabLigne[2]);
+                     decrypteDossier();
                      return;
                  }else{
                      System.out.println("tabLigne1: "+tabLigne[1]);
@@ -56,5 +60,30 @@ public class Authentification {
         userValide=new CreateUser().user;
      }
     }
+    public void crypteDossier(){
+        File repertoire= new File(userValide.getLogin());
+        String[] tab=repertoire.list();
+        for(String s: tab){
+            try {
+                new Encrypt.EncryptFile(userValide.getCle(), userValide.getLogin().getBytes(),new File(s),new File(s)).cryptage();
+            } catch (Exception ex) {
+                System.err.println(ex);
+            }
+        }
+    }
+    
+    public void decrypteDossier(){
+        File repertoire= new File(userValide.getLogin());
+        String[] tab=repertoire.list();
+        for(String s: tab){
+            try {
+                new Decrypt.DecryptFile(userValide.getCle(), userValide.getLogin(),new File(s),new File(s)).decrytage();
+            } catch (Exception ex) {
+                System.err.println(ex);
+            }
+        }
+    }
+    
+    
     
 }
