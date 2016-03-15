@@ -15,11 +15,11 @@ import javax.crypto.spec.SecretKeySpec;
 public class DecryptFile {
     
     private String algoCrypt;
-    private String key;
+    private byte[] key;
     private File cryptFile;
     private File decryptFile;
     
-    public DecryptFile(String algoCrypt, String key, File cryptFile, File decryptFile){ 
+    public DecryptFile(String algoCrypt, byte[] key, File cryptFile, File decryptFile){ 
         this.algoCrypt = algoCrypt;
         this.key = key;
         this.cryptFile = cryptFile;
@@ -27,7 +27,7 @@ public class DecryptFile {
     }
     
     public void decrytage() throws Exception{
-        Key secretKey = new SecretKeySpec(this.key.getBytes(), this.key);
+        Key secretKey = new SecretKeySpec(this.key, this.key+"");
         Cipher cipher = Cipher.getInstance(this.algoCrypt);
         
         cipher.init(Cipher.DECRYPT_MODE,secretKey);
