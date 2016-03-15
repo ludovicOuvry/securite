@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class UserCryptFile {
     
-    public UserCryptFile(User user){ // l'utilisateur à forcément rentrer un mot de passe correcte pour arriver ici.
+    public UserCryptFile(User user) throws Exception{ // l'utilisateur à forcément rentrer un mot de passe correcte pour arriver ici.
         String path = JOptionPane.showInputDialog(null, "Entrer le chemin vers le fichier", " Fichier !", JOptionPane.QUESTION_MESSAGE);
         File file=null;
         String cryptage="";
@@ -31,7 +31,7 @@ public class UserCryptFile {
             System.out.println("nom du fichier:"+file.getName());
             File Fcrypte= new File(user.getLogin()+"/"+file.getName()); // pour acéder au dossier
 
-            new Encrypt.EncryptFile(cryptage, user.getLogin(),file,Fcrypte);
+            new Encrypt.EncryptFile(cryptage, user.getLogin().getBytes(),file,Fcrypte).cryptage();
             System.out.println("Fichier cryptée");
             file.delete(); // supression de l'ancien fichier 
 
