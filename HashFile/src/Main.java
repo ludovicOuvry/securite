@@ -3,6 +3,7 @@ import User.Authentification;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 
 /*
@@ -31,9 +32,13 @@ public class Main {
         fw.write("message dans fichier crypté");
         while (true) {            
             Authentification a=new Authentification();
-            if(a.userValide!=null){
-                new UserCryptFile(a.userValide);
+             int rep=1;   
+             rep = JOptionPane.showConfirmDialog(null, "Appuyer sur Ok quand vous avez terminer", " Fin! !", JOptionPane.OK_OPTION);
+            while(rep==1){
+                
             }
+            System.out.println("fin!");
+            a.crypteDossier();
         }
         
     }

@@ -41,9 +41,10 @@ public class Authentification {
                  System.out.println("login trouvé");
                  String mdp = JOptionPane.showInputDialog(null, "entrer votre mot de passe", " Login !", JOptionPane.QUESTION_MESSAGE);
 
-                 if(new User(tabLigne[0], tabLigne[1]).verif(mdp)){
+                 if(new User(tabLigne[0], tabLigne[1],tabLigne[2]).verif(mdp)){
                      System.out.println("utilisateur Valide");
-                     userValide=new User(tabLigne[0], tabLigne[1]);
+                     userValide=new User(tabLigne[0], tabLigne[1], tabLigne[2]);
+                     decrypteDossier();
                      return;
                  }else{
                      System.out.println("tabLigne1: "+tabLigne[1]);
@@ -82,5 +83,7 @@ public class Authentification {
             }
         }
     }
+    
+    
     
 }
