@@ -65,7 +65,7 @@ public class Authentification {
         String[] tab=repertoire.list();
         for(String s: tab){
             try {
-                new Encrypt.EncryptFile("AES", userValide.getLogin().getBytes(),new File(s),new File(s)).cryptage();
+                new Encrypt.EncryptFile(userValide.getCle(), userValide.getLogin().getBytes(),new File(s),new File(s)).cryptage();
             } catch (Exception ex) {
                 System.err.println(ex);
             }
@@ -77,7 +77,7 @@ public class Authentification {
         String[] tab=repertoire.list();
         for(String s: tab){
             try {
-                new Decrypt.DecryptFile("AES", userValide.getLogin(),new File(s),new File(s)).decrytage();
+                new Decrypt.DecryptFile(userValide.getCle(), userValide.getLogin(),new File(s),new File(s)).decrytage();
             } catch (Exception ex) {
                 System.err.println(ex);
             }

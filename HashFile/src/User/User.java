@@ -56,7 +56,7 @@ public class User {
          try {
              
               FileWriter utilisateur =new FileWriter("utilisateur.txt",true);
-              utilisateur.write(this.toString()+";"+cle+"\n");
+              utilisateur.write(this.toString()+";"+getCle()+"\n");
               
               utilisateur.close();
               new File(login).mkdir();
@@ -102,6 +102,20 @@ public class User {
      */
     public void setMdpCrypte(String mdpCrypte) {
         this.mdpCrypte = mdpCrypte;
+    }
+
+    /**
+     * @return the cle
+     */
+    public String getCle() {
+        return cle;
+    }
+
+    /**
+     * @param cle the cle to set
+     */
+    public void setCle(String cle) {
+        this.cle = cle;
     }
     
 }
