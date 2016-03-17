@@ -21,6 +21,8 @@ public class EncryptFile {
     private File clearFile;
     private File cryptFile;
     
+    private SecretKey secretKey;
+    
     public EncryptFile(String algoCrypt, byte[] key, File clearFile, File cryptFile){
         boolean algoVersion = false;
         
@@ -53,7 +55,7 @@ public class EncryptFile {
         
         KeyGenerator kg = KeyGenerator.getInstance(this.algoCrypt);
         kg.init(128);
-        SecretKey secretKey = kg.generateKey();
+        this.secretKey = kg.generateKey();
         
         System.out.println(this.key.length);
     
@@ -75,4 +77,13 @@ public class EncryptFile {
         inputStream.close();
         outStream.close();
     }
+
+    public byte[] getKey() {
+        return key;
+    }
+
+    public SecretKey getSecretKey() {
+        return secretKey;
+    }
+    
 }
