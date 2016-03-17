@@ -34,8 +34,12 @@ public class Main {
         
         while (true) {            
             Authentification a=new Authentification();
-             int rep=1;   
-             rep = JOptionPane.showConfirmDialog(null, "Appuyer sur Ok quand vous avez terminer", " Fin! !", JOptionPane.OK_OPTION);
+             int rep=1;
+             rep = JOptionPane.showOptionDialog(null, "Metter vos fichier dans le dossier,les fichiers seront cryptées quand vous appuyerez sur OK", "Fin!",
+                         JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                         null,           
+                         MiseEnPlace.boutonok,      
+                         MiseEnPlace.boutonok[0]);;
             while(rep==1){
                 
             }

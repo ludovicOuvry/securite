@@ -15,6 +15,9 @@ import java.util.logging.Logger;
  * @author Ludovic
  */
 public class MiseEnPlace {
+    public static String[] boutonok={"OK"};
+    public static String[] boutonokQuestion={"OK"};
+    
     
     public MiseEnPlace(){
         if(!(new File("utilisateur.txt").isFile())){
