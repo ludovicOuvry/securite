@@ -71,8 +71,7 @@ public class Authentification {
         String[] tab=repertoire.list();
         for(String s: tab){
             try {
-                this.enc = new EncryptFile(userValide.getCle(), userValide.getLogin().getBytes(),new File(s),new File(s));
-                this.enc.cryptage();
+                new Encrypt.EncryptFile(userValide.getCle(), userValide.getLogin().getBytes(),new File(userValide.getLogin()+File.separatorChar+s),new File(userValide.getLogin()+File.separatorChar+s)).cryptage();
             } catch (Exception ex) {
                 System.err.println(ex);
             }

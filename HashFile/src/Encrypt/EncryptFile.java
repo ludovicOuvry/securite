@@ -69,6 +69,7 @@ public class EncryptFile {
         byte[] inputBytes = new byte[(int) this.clearFile.length()];
         inputStream.read(inputBytes);
         
+        clearFile.delete();
         FileOutputStream outStream = new FileOutputStream(this.cryptFile);
         byte[] outBytes = cipher.doFinal(inputBytes);
         outStream.write(outBytes);
