@@ -74,4 +74,10 @@ public class EncryptFile {
         inputStream.close();
         outStream.close();
     }
+
+    public byte[] getKey() {
+        return key;
+    }
+    
+    
 }
