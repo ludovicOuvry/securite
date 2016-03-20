@@ -18,11 +18,11 @@ import javax.swing.JOptionPane;
 public class UserDecryptFile {
     
     public UserDecryptFile(User user) throws Exception{ // l'utilisateur à forcément rentrer un mot de passe correcte pour arriver ici.
-        String path = JOptionPane.showInputDialog(null, "Entrer le chemin vers le fichier", " Fichier !", JOptionPane.QUESTION_MESSAGE);
+        String path = JOptionPane.showInputDialog(null, "Entrer le chemin vers le fichier", " Fichier !", JOptionPane.OK_OPTION);
         File file=null;
         String decryptage="";
         while(file==null){
-             decryptage = JOptionPane.showInputDialog(null, "Entrer la méthode de decryptage, laisser vide si inconnu", " Decryptage !", JOptionPane.QUESTION_MESSAGE);
+             decryptage = JOptionPane.showInputDialog(null, "Entrer la méthode de decryptage, laisser vide si inconnu", " Decryptage !", JOptionPane.OK_OPTION);
              file= new File(path);
         }
         if(!file.canRead()){

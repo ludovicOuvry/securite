@@ -21,7 +21,7 @@ public class EncryptFile {
     private File clearFile;
     private File cryptFile;
     
-    private SecretKey secretKey;
+    private SecretKeySpec secretKey;
     
     public EncryptFile(String algoCrypt, byte[] key, File clearFile, File cryptFile){
         boolean algoVersion = false;
@@ -46,7 +46,7 @@ public class EncryptFile {
     public void cryptage() throws Exception{
         KeyGenerator kg = KeyGenerator.getInstance(this.algoCrypt);
         kg.init(128);
-        this.secretKey = kg.generateKey();
+        this.secretKey = (SecretKeySpec) kg.generateKey();
     
         //SecretKeySpec secretKey = new SecretKeySpec(this.key, this.algoCrypt);
         Cipher cipher = Cipher.getInstance(this.algoCrypt);
@@ -73,7 +73,7 @@ public class EncryptFile {
         return key;
     }
 
-    public SecretKey getSecretKey() {
+    public SecretKeySpec getSecretKey() {
         return secretKey;
     }
     

@@ -26,7 +26,7 @@ public class UserCryptFile {
         File file=null;
         String cryptage="";
         while(file==null){
-             cryptage = JOptionPane.showInputDialog(null, "Entrer la méthode de cryptage, laisser vide si inconnu", " Cryptage !", JOptionPane.QUESTION_MESSAGE);
+             cryptage = JOptionPane.showInputDialog(null, "Entrer la méthode de cryptage, laisser vide si inconnu", " Cryptage !", JOptionPane.OK);
              file= new File(path);
         }
         if(!file.canRead()){

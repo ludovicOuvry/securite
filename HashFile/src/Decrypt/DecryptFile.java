@@ -16,11 +16,11 @@ import javax.crypto.spec.SecretKeySpec;
 public class DecryptFile {
     
     private String algoCrypt;
-    private SecretKey secretKey;
+    private SecretKeySpec secretKey;
     private File cryptFile;
     private File decryptFile;
     
-    public DecryptFile(String algoCrypt, SecretKey secretKey, File cryptFile, File decryptFile){ 
+    public DecryptFile(String algoCrypt, SecretKeySpec secretKey, File cryptFile, File decryptFile){ 
         this.algoCrypt = algoCrypt;
         this.secretKey = secretKey;
         this.cryptFile = cryptFile;
