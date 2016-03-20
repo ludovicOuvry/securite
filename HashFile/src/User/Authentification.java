@@ -34,24 +34,31 @@ public class Authentification {
     
     public Authentification() throws FileNotFoundException, IOException{
         userValide=null;
-        String ligne;
-        
+        String ligne;    
         String rep = JOptionPane.showInputDialog(null, "n pour créer un nouvelle utilisteur. \n a pour vous authentifier.", " Menu1 !", JOptionPane.QUESTION_MESSAGE);
+        
         if(rep.equals("a")){
-              String login = JOptionPane.showInputDialog(null, "entrer votre Login", " Login !", JOptionPane.QUESTION_MESSAGE);
-
+             
+            String login = JOptionPane.showInputDialog(null, "entrer votre Login", " Login !", JOptionPane.QUESTION_MESSAGE);
             BufferedReader  buff = new BufferedReader(new FileReader("utilisateur.txt"));
+            
             while((ligne = buff.readLine()) != null){
+                
                 String[] tabLigne=ligne.split(";"); // 0 login, 1 mdp cryptée
+                
                 if(tabLigne[0].equals(login)){
                     System.out.println("login trouvé");
                     String mdp = JOptionPane.showInputDialog(null, "entrer votre mot de passe", " Login !", JOptionPane.QUESTION_MESSAGE);
 
+                    System.out.println("Mdp trouvé");
+                    
                     if(new User(tabLigne[0], tabLigne[1],tabLigne[2]).verif(mdp)){
                         System.out.println("utilisateur Valide");
-                        userValide=new User(tabLigne[0], tabLigne[1], tabLigne[2]);
+                        userValide = new User(tabLigne[0], tabLigne[1], tabLigne[2]);
+                        
                         decrypteDossier();
-                        return;
+                        
+                        break;
                     }else{
                         System.out.println("tabLigne1: "+tabLigne[1]);
                         System.out.println(new  StrongPasswordEncryptor().encryptPassword(mdp));
@@ -62,28 +69,35 @@ public class Authentification {
             }
          
         }else if(rep.equals("n")){
-        userValide=new CreateUser().user;
+            userValide=new CreateUser().user;
         }
     }
     
     public void crypteDossier(){
         File repertoire= new File(userValide.getLogin());
         String[] tab=repertoire.list();
+        
         for(String s: tab){
             try {
-                new Encrypt.EncryptFile(userValide.getCle(), userValide.getLogin().getBytes(),new File(userValide.getLogin()+File.separatorChar+s),new File(userValide.getLogin()+File.separatorChar+s)).cryptage();
+                this.enc = new EncryptFile(userValide.getCle(), userValide.getLogin().getBytes(),new File(userValide.getLogin()+File.separatorChar+s),new File(userValide.getLogin()+File.separatorChar+s));
+                this.enc.cryptage();
             } catch (Exception ex) {
                 System.err.println(ex);
             }
         }
     }
     
-    public void decrypteDossier(){
+    private void decrypteDossier(){
         File repertoire= new File(userValide.getLogin());
         String[] tab=repertoire.list();
+        
+        //System.out.println(""+this.enc.getSecretKey());
+        
         for(String s: tab){
             try {
-                new Decrypt.DecryptFile(userValide.getCle(), userValide.getLogin(),new File(s),new File(s)).decrytage();
+                this.dec = new DecryptFile(userValide.getCle(),this.enc.getSecretKey(),new File(userValide.getLogin()+File.separatorChar+s),new File(userValide.getLogin()+File.separatorChar+s));
+                this.dec.decrytage();
+                System.out.println("Dec");
             } catch (Exception ex) {
                 System.err.println(ex);
             }

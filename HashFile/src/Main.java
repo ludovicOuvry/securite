@@ -34,11 +34,14 @@ public class Main {
         
         while (true) {            
             Authentification a=new Authentification();
-             int rep=1;   
-             rep = JOptionPane.showConfirmDialog(null, "Appuyer sur Ok quand vous avez terminer", " Fin! !", JOptionPane.OK_OPTION);
+            
+            int rep=1;   
+            rep = JOptionPane.showConfirmDialog(null, "Appuyer sur Ok quand vous avez terminer", " Fin! !", JOptionPane.OK_OPTION);
+            
             while(rep==1){
                 
             }
+            
             System.out.println("fin!");
             a.crypteDossier();
         }

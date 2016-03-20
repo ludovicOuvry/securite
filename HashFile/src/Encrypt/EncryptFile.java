@@ -44,20 +44,9 @@ public class EncryptFile {
     }
     
     public void cryptage() throws Exception{
-        
-        String username = "bob@google.org";
-        String password = "Password1";
-        String secretID = "BlahBlahBlah";
-        String SALT2 = "deliciously salty";
-
-         // Get the Key
-        //this.key = (password).getBytes("UTF-8");
-        
         KeyGenerator kg = KeyGenerator.getInstance(this.algoCrypt);
         kg.init(128);
         this.secretKey = kg.generateKey();
-        
-        System.out.println(this.key.length);
     
         //SecretKeySpec secretKey = new SecretKeySpec(this.key, this.algoCrypt);
         Cipher cipher = Cipher.getInstance(this.algoCrypt);
@@ -69,13 +58,15 @@ public class EncryptFile {
         byte[] inputBytes = new byte[(int) this.clearFile.length()];
         inputStream.read(inputBytes);
         
-        clearFile.delete();
+       // clearFile.delete();
         FileOutputStream outStream = new FileOutputStream(this.cryptFile);
         byte[] outBytes = cipher.doFinal(inputBytes);
         outStream.write(outBytes);
         
         inputStream.close();
         outStream.close();
+        
+        System.out.println("Fin cryptage");
     }
 
     public byte[] getKey() {
