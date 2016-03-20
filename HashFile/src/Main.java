@@ -50,6 +50,8 @@ public class Main {
                 System.out.println("fin!\nDémarrage cryptage");
                 a.crypteDossier();
                 System.out.println("Cryptage terminé!");
+                a.decrypteDossier();
+                System.out.println("Decryptage finised main");
             }
         }
 

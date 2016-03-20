@@ -90,25 +90,13 @@ public class Authentification {
         File repertoire= new File(userValide.getLogin());
         String[] tab=repertoire.list();
         
-        System.out.println("Passage in decrypt");
-        
         for(String s: tab){
-            System.out.println("Passage boucle decrypt");
-            System.out.println(s.toString());
-            
             File encryptFile = new File(userValide.getLogin()+File.separatorChar+s);
             File decryptFile = new File(userValide.getLogin()+File.separatorChar+"test2.txt.txt");
-            
-            System.out.println(encryptFile.toString());
-            System.out.println(decryptFile.toString());
-            
-            //System.out.println(this.enc.getSecretKey().getAlgorithm());
-            
             try {   
                 this.dec = new DecryptFile(userValide.getCle(),this.enc.getSecretKey(),encryptFile,decryptFile);
                 this.dec.decrytage();
             } catch (Exception ex) {
-                //System.out.println("Problem decryptage :\nAlgortihm : "+userValide.getCle()+"\nSecretKey : "+this.enc.getSecretKey().toString()+"\nEncryptFile :");
                 System.err.println(ex);
             }
         }
